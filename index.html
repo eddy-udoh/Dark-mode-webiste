@@ -1,374 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portfolio Website</title>
-  <script src="https://kit.fontawesome.com/66181f234a.js" crossorigin="anonymous"></script>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --primary-color: #edf2fc;
-      --secondary-color: #212121;
-    }
-
-    .dark-theme {
-      --primary-color: #000106;
-      --secondary-color: #fff;
-    }
-
-    body {
-      font-family: sans-serif;
-      background: var(--primary-color);
-      color: var(--secondary-color);
-    }
-
-    .hero {
-      height: 100vh;
-      width: 100%;
-      position: relative;
-      overflow: hidden;
-    }
-
-    nav {
-      width: 90%;
-      margin: auto;
-      padding: 20px 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      position: relative;
-    }
-
-    .logo {
-      width: 100px;
-      cursor: pointer;
-    }
-
-    .nav-right {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-    }
-
-    #icon {
-      width: 30px;
-      cursor: pointer;
-    }
-
-    .nav-links {
-      display: flex;
-      align-items: center;
-      gap: 30px;
-    }
-
-    .nav-links ul {
-      display: flex;
-      list-style: none;
-    }
-
-    .nav-links li {
-      margin: 10px 20px;
-    }
-
-    .nav-links li a {
-      text-decoration: none;
-      color: var(--secondary-color);
-      font-weight: 500;
-    }
-
-    .nav-links li a:hover {
-      color: #ff4321;
-    }
-
-    .hamburger {
-      display: none;
-      flex-direction: column;
-      cursor: pointer;
-      padding: 5px;
-    }
-
-    .hamburger span {
-      width: 25px;
-      height: 3px;
-      background: var(--secondary-color);
-      margin: 3px 0;
-      transition: 0.3s;
-    }
-
-    .hamburger.active span:nth-child(1) {
-      transform: rotate(45deg) translate(6px, 6px);
-    }
-
-    .hamburger.active span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .hamburger.active span:nth-child(3) {
-      transform: rotate(-45deg) translate(6px, -6px);
-    }
-
-    .info {
-      margin-left: 8%;
-      margin-top: 12%;
-    }
-
-    .info h1 {
-      font-size: 70px;
-      margin-bottom: 20px;
-    }
-
-    span {
-      color: #ff4321;
-    }
-
-    .info p {
-      line-height: 22px;
-      margin-bottom: 20px;
-    }
-
-    .info a {
-      background: var(--secondary-color);
-      padding: 10px 18px;
-      text-decoration: none;
-      color: var(--primary-color);
-      border-radius: 5px;
-      transition: 0.3s;
-      display: inline-block;
-    }
-
-    .info a:hover {
-      background: #ff4321;
-    }
-
-    .img-box {
-    width: 45%;
-    height: auto;
-    aspect-ratio: 3/4; /* Keeps consistent image aspect ratio */
-    position: absolute;
-    bottom: 0;
-    right: 100px;
-    pointer-events: none; /* Optional: avoid hover glitches on touch devices */
-}
-
-.img-box img {
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    max-width: 100%;
-    height: auto;
-    transition: bottom 1s, left 1s;
-}
-
-.img-box:hover .back-img {
-    bottom: 40px;
-}
-
-.img-box:hover .main-img {
-    left: 54%;
-}
-
-    .social-links {
-      margin-left: 8%;
-      margin-top: 50px;
-    }
-
-    .social-links a {
-      font-size: 40px;
-      color: var(--secondary-color);
-      margin-right: 20px;
-      transition: 0.3s;
-    }
-
-    .social-links a:hover {
-      color: #ff4321;
-    }
-
-    /* Mobile Styles */
-    @media screen and (max-width: 768px) {
-      .hamburger {
-        display: flex;
-      }
-
-      .nav-links {
-        position: fixed;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100vh;
-        background: var(--primary-color);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        transition: left 0.3s ease;
-        z-index: 1000;
-      }
-
-      .nav-links.active {
-        left: 0;
-      }
-
-      .nav-links ul {
-        flex-direction: column;
-      }
-
-      .nav-links li {
-        margin: 20px 0;
-      }
-
-      .nav-links li a {
-        font-size: 24px;
-      }
-
-      .close-btn {
-        position: absolute;
-        top: 30px;
-        right: 30px;
-        font-size: 30px;
-        cursor: pointer;
-        color: var(--secondary-color);
-      }
-
-      .info {
-        text-align: center;
-        margin: 10% 5% 0 5%;
-      }
-
-      .info h1 {
-        font-size: 40px;
-      }
-
-      .info p {
-        font-size: 14px;
-      }
-
-       .img-box {
-        position: relative;
-        width: 70%;
-        margin: 30px auto 0;
-        right: 0;
-        bottom: unset;
-        aspect-ratio: 3/4;
-    }
-
-    .img-box img {
-        max-height: 100%;
-    }
-      .social-links {
-        text-align: center;
-        margin-top: 30px;
-      }
-
-      .social-links a {
-        font-size: 30px;
-        margin: 0 15px;
-      }
-    }
-
-    @media screen and (max-width: 480px) {
-      .img-box {
-        width: 80%;
-    }
-        .info h1 {
-        font-size: 32px;
-      }
-
-      .social-links a {
-        font-size: 25px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio Website</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/66181f234a.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="hero">
-    <nav>
-      <img src="assests/portfolio_site_img/logo.png" class="logo" alt="logo" />
+    <div class="hero">
+        <nav>
+            <img src="assests/portfolio_site_img/logo.png" class="logo" alt="Logo" />
 
-      <div class="nav-links" id="navLinks">
-        <div class="close-btn" id="closeBtn">&times;</div>
-        <ul>
-          <li><a href="">HOME</a></li>
-          <li><a href="">ABOUT</a></li>
-          <li><a href="">PORTFOLIO</a></li>
-          <li><a href="">SERVICES</a></li>
-          <li><a href="">HIRE ME</a></li>
-        </ul>
-      </div>
+            <div class="nav-links" id="navLinks">
+                <div class="close-btn" id="closeBtn">&times;</div>
+                <ul>
+                    <li><a href="#" class="active">HOME</a></li>
+                    <li><a href="#">ABOUT</a></li>
+                    <li><a href="#">PORTFOLIO</a></li>
+                    <li><a href="#">SERVICES</a></li>
+                    <li><a href="#">HIRE ME</a></li>
+                </ul>
+            </div>
 
-      <div class="nav-right">
-        <div class="hamburger" id="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
+            <div class="nav-right">
+                <button class="hamburger" id="hamburger" aria-label="Menu Toggle" aria-expanded="false">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                <img src="assests/dark theme icon/moon.png" id="icon" alt="Theme toggle icon" />
+            </div>
+        </nav>
+
+        <div class="info">
+            <h1>I'm <span>Kate</span> Amelia</h1>
+            <p>This is my official portfolio website to showcase all my work related<br />to web development and UI
+                design.</p>
+            <a href="#">Download CV</a>
         </div>
-        <img src="assests/dark theme icon/moon.png" id="icon" />
-      </div>
-    </nav>
 
-    <div class="info">
-      <h1>I'm <span>Kate</span> Amelia</h1>
-      <p>This is my official portfolio website to showcase my all works related<br />to web development and UI design.</p>
-      <a href="#">Download CV</a>
+        <div class="img-box">
+            <img src="assests/portfolio_site_img/pattern.png" class="back-img" alt="Background pattern" />
+            <img src="assests/portfolio_site_img/girl.png" class="main-img" alt="Kate Amelia" />
+        </div>
+
+        <div class="social-links">
+            <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+            <a href="#"><i class="fa-brands fa-square-behance"></i></a>
+            <a href="#"><i class="fa-brands fa-square-dribbble"></i></a>
+        </div>
     </div>
 
-    <div class="img-box">
-      <img src="assests/portfolio_site_img/pattern.png" class="back-img" alt="Background pattern" />
-      <img src="assests/portfolio_site_img/girl.png" class="main-img" alt="Kate Amelia" />
-    </div>
+    <script>
+        const icon = document.getElementById("icon");
+        const hamburger = document.getElementById("hamburger");
+        const navLinks = document.getElementById("navLinks");
+        const closeBtn = document.getElementById("closeBtn");
 
-    <div class="social-links">
-      <a href="#"><i class="fa-brands fa-linkedin"></i></a>
-      <a href="#"><i class="fa-brands fa-square-behance"></i></a>
-      <a href="#"><i class="fa-brands fa-square-dribbble"></i></a>
-    </div>
-  </div>
+        icon.onclick = function () {
+            document.body.classList.toggle("dark-theme");
+            icon.src = document.body.classList.contains("dark-theme")
+                ? "assests/dark theme icon/sun.png"
+                : "assests/dark theme icon/moon.png";
+        };
 
-  <script>
-    const icon = document.getElementById("icon");
-    const hamburger = document.getElementById("hamburger");
-    const navLinks = document.getElementById("navLinks");
-    const closeBtn = document.getElementById("closeBtn");
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navLinks.classList.toggle("active");
+            hamburger.setAttribute("aria-expanded", hamburger.classList.contains("active"));
+        });
 
-    icon.onclick = function () {
-      document.body.classList.toggle("dark-theme");
-      icon.src = document.body.classList.contains("dark-theme")
-        ? "assests/dark theme icon/sun.png"
-        : "assests/dark theme icon/moon.png";
-    };
+        closeBtn.addEventListener("click", () => {
+            hamburger.classList.remove("active");
+            navLinks.classList.remove("active");
+            hamburger.setAttribute("aria-expanded", "false");
+        });
 
-    hamburger.addEventListener("click", () => {
-      hamburger.classList.toggle("active");
-      navLinks.classList.toggle("active");
-    });
-
-    closeBtn.addEventListener("click", () => {
-      hamburger.classList.remove("active");
-      navLinks.classList.remove("active");
-    });
-
-    document.querySelectorAll(".nav-links a").forEach((link) => {
-      link.addEventListener("click", () => {
-        hamburger.classList.remove("active");
-        navLinks.classList.remove("active");
-      });
-    });
-
-    document.addEventListener("click", function (event) {
-      if (
-        !hamburger.contains(event.target) &&
-        !navLinks.contains(event.target) &&
-        !event.target.closest(".nav-right")
-      ) {
-        hamburger.classList.remove("active");
-        navLinks.classList.remove("active");
-      }
-    });
-  </script>
+        document.querySelectorAll(".nav-links a").forEach((link) => {
+            link.addEventListener("click", () => {
+                hamburger.classList.remove("active");
+                navLinks.classList.remove("active");
+                hamburger.setAttribute("aria-expanded", "false");
+            });
+        });
+    </script>
 </body>
+
 </html>

@@ -1,7 +1,7 @@
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;         
+    box-sizing: border-box;
 }
 
 :root {
@@ -14,27 +14,23 @@
     --secondary-color: #fff;
 }
 
-#icon {
-    width: 30px;
-    cursor: pointer;
-}
-
-nav ul {
-    display: flex;
-    text-align: right;
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--primary-color);
+    color: var(--secondary-color);
+    overflow-x: hidden;
+    scroll-behavior: smooth;
 }
 
 .hero {
-    height: 100vh;
+    min-height: 100vh;
     width: 100%;
-    background: var(--primary-color);
-    font-family: sans-serif;
     position: relative;
     overflow: hidden;
 }
 
 nav {
-    width: 84%;
+    width: 90%;
     margin: auto;
     padding: 20px 0;
     display: flex;
@@ -43,19 +39,57 @@ nav {
     position: relative;
 }
 
-nav ul li {
-    display: inline-block;
+.logo {
+    width: 100px;
+    cursor: pointer;
+}
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+#icon {
+    width: 30px;
+    cursor: pointer;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+}
+
+.nav-links ul {
+    display: flex;
     list-style: none;
+}
+
+.nav-links li {
     margin: 10px 20px;
 }
 
-nav ul li a {
+.nav-links li a {
     text-decoration: none;
     color: var(--secondary-color);
+    font-weight: 500;
 }
 
-nav ul li a:hover {
+.nav-links li a:hover,
+.nav-links li a.active {
     color: #ff4321;
+    border-bottom: 2px solid #ff4321;
+}
+
+.close-btn {
+    display: none;
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    font-size: 30px;
+    cursor: pointer;
+    color: var(--secondary-color);
 }
 
 .hamburger {
@@ -63,6 +97,8 @@ nav ul li a:hover {
     flex-direction: column;
     cursor: pointer;
     padding: 5px;
+    background: none;
+    border: none;
 }
 
 .hamburger span {
@@ -71,7 +107,6 @@ nav ul li a:hover {
     background: var(--secondary-color);
     margin: 3px 0;
     transition: 0.3s;
-    transform-origin: center;
 }
 
 .hamburger.active span:nth-child(1) {
@@ -86,27 +121,14 @@ nav ul li a:hover {
     transform: rotate(-45deg) translate(6px, -6px);
 }
 
-.nav-right {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.logo {
-    width: 100px;
-    cursor: pointer;
-}
-
 .info {
     margin-left: 8%;
-    margin-top: 15%;
+    margin-top: 12%;
 }
 
 .info h1 {
     font-size: 70px;
-    color: var(--secondary-color);
     margin-bottom: 20px;
-
 }
 
 span {
@@ -114,7 +136,6 @@ span {
 }
 
 .info p {
-    color: var(--secondary-color);
     line-height: 22px;
     margin-bottom: 20px;
 }
@@ -124,20 +145,20 @@ span {
     padding: 10px 18px;
     text-decoration: none;
     color: var(--primary-color);
-    display: inline-block;
-    margin: 30px 0;
     border-radius: 5px;
-    transition: background 0.3s ease;
+    transition: 0.3s;
+    display: inline-block;
 }
 
 .info a:hover {
-    background: #ff4321;
-    color: var(--primary-color);
+    background: transparent;
+    color: #ff4321;
+    border: 1px solid #ff4321;
 }
 
 .img-box {
     width: 45%;
-    height: 80%;
+    height: 70%;
     position: absolute;
     bottom: 0;
     right: 100px;
@@ -146,10 +167,11 @@ span {
 .img-box img {
     height: 100%;
     position: absolute;
-    left: 50%;
+    left: 70%;
     bottom: 0;
     transform: translateX(-50%);
     transition: bottom 1s, left 1s;
+    object-fit: cover;
 }
 
 .img-box:hover .back-img {
@@ -157,7 +179,7 @@ span {
 }
 
 .img-box:hover .main-img {
-    left: 54%;
+    left: 60%;
 }
 
 .social-links {
@@ -169,7 +191,7 @@ span {
     font-size: 40px;
     color: var(--secondary-color);
     margin-right: 20px;
-    transition: color 0.3s ease;
+    transition: 0.3s;
 }
 
 .social-links a:hover {
@@ -177,6 +199,10 @@ span {
 }
 
 @media screen and (max-width: 768px) {
+    .logo {
+        width: 80px;
+    }
+
     .hamburger {
         display: flex;
     }
@@ -187,7 +213,8 @@ span {
         left: -100%;
         width: 100%;
         height: 100vh;
-        background: var(--primary-color);
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
         flex-direction: column;
         justify-content: center;
         align-items: center;
@@ -199,117 +226,81 @@ span {
         left: 0;
     }
 
+    .nav-links ul {
+        flex-direction: column;
+    }
+
     .nav-links li {
         margin: 20px 0;
     }
 
     .nav-links li a {
         font-size: 24px;
-        font-weight: bold;
     }
 
     .close-btn {
-        position: absolute;
-        top: 30px;
-        right: 30px;
-        font-size: 30px;
-        color: var(--secondary-color);
-        cursor: pointer;
         display: block;
     }
 
     .info {
-        margin-left: 5%;
-        margin-top: 10%;
         text-align: center;
+        margin: 10% 5% 0 5%;
     }
 
     .info h1 {
         font-size: 40px;
-        margin-bottom: 15px;
     }
 
     .info p {
         font-size: 14px;
-        line-height: 20px;
-        margin-bottom: 15px;
-        padding: 0 10px;
-    }
-
-    .info a {
-        padding: 12px 20px;
-        font-size: 16px;
     }
 
     .img-box {
+        position: relative;
         width: 70%;
-        height: 50%;
-        right: 15%;
-        bottom: 10%;
+        aspect-ratio: 2.8/4;
+        margin: 70px auto 0;
+        right: 0;
+        bottom: unset;
+        height: auto;
     }
 
+    .img-box img {
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        max-width: 100%;
+        height: auto;
+    }
+
+
     .social-links {
-        margin-left: 5%;
-        margin-top: 20px;
         text-align: center;
+        margin-top: 30px;
+        padding-right: 30px;
     }
 
     .social-links a {
         font-size: 30px;
         margin: 0 15px;
     }
+}
 
-    nav {
-        width: 90%;
-        padding: 15px 0;
-    }
-
+@media screen and (max-width: 480px) {
     .logo {
         width: 80px;
     }
 
-    #icon {
-        width: 25px;
+    .img-box {
+        width: 70%;
     }
-}
 
-@media screen and (max-width: 480px) {
     .info h1 {
         font-size: 32px;
     }
 
-    .info p {
-        font-size: 13px;
-    }
-
-    .img-box {
-        width: 80%;
-        height: 45%;
-        right: 10%;
-    }
-
     .social-links a {
         font-size: 25px;
-        margin: 0 10px;
-    }
-
-    nav {
-        width: 95%;
-    }
-}
-
-
-@media screen and (min-width: 769px) and (max-width: 1024px) {
-    .info h1 {
-        font-size: 55px;
-    }
-
-    .img-box {
-        width: 50%;
-        right: 50px;
-    }
-
-    nav {
-        width: 90%;
     }
 }
